@@ -20,4 +20,20 @@ O projeto tem como objetivo modelar e implementar um sistema para avaliar estand
 3. **Avaliação de Estandes**: Os avaliadores podem dar notas aos estandes de acordo com critérios definidos.
 4. **Restrição de Avaliação**: Garantir que um avaliador não avalie o mesmo estande mais de uma vez.
 
+## Comandos de instalação e inicialização do TypeScript:
 
+> ```npm init -y```
+> 
+> ```npm install typescript --save-dev```
+> 
+> ```npx tsc -init```
+
+## Instalando dependências do Prisma
+
+> ```npm install express --save```
+> 
+> ```npm i --save-dev @types/express```
+> 
+> ```npm install prisma --save-dev```
+> 
+> ```npx prisma init --datasource-provider sqlite```

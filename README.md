@@ -37,3 +37,5 @@ O projeto tem como objetivo modelar e implementar um sistema para avaliar estand
 > ```npm install prisma --save-dev```
 > 
 > ```npx prisma init --datasource-provider sqlite```
+>
+> ```npx prisma migrate dev --name init```

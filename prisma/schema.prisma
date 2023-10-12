@@ -1,6 +1,10 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +12,38 @@ generator client {
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+model Avaliador {
+  id          Int       @id @default(autoincrement())
+  name        String
+  dateOfBirth DateTime
+  type        UserType  @default(ALUNO)
+  estandeId   Int?      @map("estande_id")
+  estande     Estande?  @relation(fields: [estandeId], references: [id])
+  avaliacoes  Avaliacao[]
+
+  @@index([estandeId], name: "estande_idx")
+}
+
+enum UserType {
+  ALUNO
+  PROFESSOR
+}
+
+model Avaliacao {
+  id           Int      @id @default(autoincrement())
+  idAvaliador  Int      @map("avaliador_id")
+  estandeId    Int      @map("estande_id")
+  estande      Estande  @relation(fields: [estandeId], references: [id])
+  avaliador    Avaliador @relation(fields: [idAvaliador], references: [id])
+
+  @@index([idAvaliador], name: "avaliador_idx")
+}
+
+model Estande {
+  id     Int      @id @default(autoincrement())
+  nome   String
+  avaliacoes Avaliacao[] 
+  avaliadores Avaliador[]
 }

@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Aluno {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String   @unique
+  matricula String   @unique
+  senha     String
+  grupos    Grupo[]
+  avaliacoes Avaliacao[]
+}
+
+model Professor {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String   @unique
+  matricula String   @unique
+  senha     String
+  avaliacoes Avaliacao[]
+}
+
+model Grupo {
+  id Int @id @default(autoincrement())
+  nome String
+  descricao String
+  estande Estande @relation(fields: [estandeId], references: [id])
+  alunos Aluno[]
+  avaliacoes Avaliacao[]
+  estandeId Int
+}
+
+model Estande {
+  id Int @id @default(autoincrement())
+  nome String
+  descricao String
+  imagem String
+  grupos Grupo[]
+}
+
+model Avaliacao {
+  id         Int        @id @default(autoincrement())
+  aluno      Aluno      @relation(fields: [alunoId], references: [id])
+  grupo      Grupo      @relation(fields: [grupoId], references: [id])
+  professor  Professor  @relation(fields: [professorId], references: [id])
+  criterio   Criterio   @relation(fields: [criterioId], references: [id])
+  nota       Float
+  alunoId    Int
+  grupoId    Int
+  professorId Int
+  criterioId Int
+}
+
+model Criterio {
+  id Int @id @default(autoincrement())
+  nome String
+  descricao String
+  avaliacoes Avaliacao[]
+}

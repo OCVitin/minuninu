@@ -2,7 +2,10 @@
 
 ## Grupo
 
-
+[Arycia](https://github.com/Aryciacp)
+[Icaro](https://github.com/Icaro-tme)
+[João](https://github.com/joaovitor10br)
+[Vitor](https://github.com/OCVitin)
 
 ## Descrição
 
@@ -15,7 +18,7 @@ O projeto tem como objetivo modelar e implementar um sistema para avaliar estand
 
 ## Estrutura de Modelagem (UML)
 
-*Nota*: A modelagem UML completa será disponibilizada em breve.
+<img src="/diagrama_de_classe.drawio">
 
 ## Features
 

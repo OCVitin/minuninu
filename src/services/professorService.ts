@@ -13,7 +13,12 @@ export class ProfessorService {
     });
   }
 
-  public async createProfessor(data: { nome: string; matricula: string; area: string }) {
+  public async createProfessor(
+    data: { 
+      nome:       string; 
+      matricula:  string; 
+      area:       string 
+    }) {
     return prisma.professor.create({
       data,
     });
@@ -37,7 +42,12 @@ export class ProfessorService {
     return professor;
   }
 
-  public async updateProfessor(id: number, data: { nome?: string; matricula?: string; area?: string }) {
+  public async updateProfessor(id: number, 
+    data: { 
+      nome?:      string; 
+      matricula?: string; 
+      area?:      string 
+    }) {
     return prisma.professor.update({
       where: { id },
       data,

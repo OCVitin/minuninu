@@ -13,7 +13,13 @@ export class CriterioService {
     });
   }
 
-  public async createCriterio(data: { nome: string; descricao: string; avaliacaoId: number }) {
+  public async createCriterio(
+    data: { 
+      nome:         string; 
+      descricao:    string; 
+      nota:         number; 
+      avaliacaoId:  number 
+    }) {
     return prisma.criterio.create({
       data,
     });
@@ -27,7 +33,13 @@ export class CriterioService {
     return criterio;
   }
 
-  public async updateCriterio(id: number, data: { nome?: string; descricao?: string; avaliacaoId?: number }) {
+  public async updateCriterio(id: number, 
+    data: { 
+      nome?:        string; 
+      descricao?:   string; 
+      nota:         number; 
+      avaliacaoId?: number 
+    }) {
     return prisma.criterio.update({
       where: { id },
       data,

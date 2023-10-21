@@ -13,7 +13,13 @@ export class AlunoService {
     });
   }
 
-  public async createAluno(data: { nome: string; matricula: string; curso: string; estandeId: number }) {
+  public async createAluno(
+    data: { 
+      nome:       string; 
+      matricula:  string; 
+      curso:      string; 
+      estandeId:  number 
+    }) {
     return prisma.aluno.create({
       data,
     });
@@ -37,7 +43,13 @@ export class AlunoService {
     return aluno;
   }
 
-  public async updateAluno(id: number, data: { nome?: string; matricula?: string; curso?: string; estandeId?: number }) {
+  public async updateAluno(id: number, 
+    data: { 
+      nome?:      string; 
+      matricula?: string; 
+      curso?:     string; 
+      estandeId?: number 
+    }) {
     return prisma.aluno.update({
       where: { id },
       data,

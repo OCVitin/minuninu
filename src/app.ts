@@ -1,5 +1,4 @@
 import express from 'express';
-
 import alunoRoutes from './routes/alunoRoutes';
 import professorRoutes from './routes/professorRoute';
 import estandeRoutes from './routes/estandeRoute';
@@ -11,15 +10,14 @@ const port = 3000;
 
 app.use(express.json());
 
-app.use('/alunos', alunoRoutes);
-app.use('/professores', professorRoutes);
-app.use('/estandes', estandeRoutes);
-app.use('/avaliacoes', avaliacaoRoutes);
-app.use('/criterios', criterioRoutes);
+app.use('/', alunoRoutes);
+app.use('/', professorRoutes);
+app.use('/', estandeRoutes);
+app.use('/', avaliacaoRoutes);
+app.use('/', criterioRoutes);
 
 app.use(express.static('public'));
 
 app.listen(port, () => {
   console.log(`Servidor está ouvindo na porta ${port}`);
 });
-

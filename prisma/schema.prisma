@@ -61,7 +61,6 @@ model Criterio {
   avaliacao   Avaliacao?  @relation(fields: [avaliacaoId], references: [id])
 }
 
-// write me a json body to do a post request for each of these models above
 // localhost:3000/estandes
 // {
 //   "nomeGrupo": "Grupo 1",

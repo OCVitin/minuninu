@@ -1,10 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,36 +10,53 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Avaliador {
-  id          Int       @id @default(autoincrement())
-  name        String
-  dateOfBirth DateTime
-  type        UserType  @default(ALUNO)
-  estandeId   Int?      @map("estande_id")
-  estande     Estande?  @relation(fields: [estandeId], references: [id])
-  avaliacoes  Avaliacao[]
-
-  @@index([estandeId], name: "estande_idx")
+model Aluno {
+  id Int @id @default(autoincrement())
+  nome String
+  matricula String @unique
+  curso String
+  estandeId Int @map("estande_id")
+  estande Estande @relation(fields: [estandeId], references: [id])
+  avaliacoes Avaliacao[]
 }
 
-enum UserType {
-  ALUNO
-  PROFESSOR
+model Professor {
+  id Int @id @default(autoincrement())
+  nome String
+  matricula String @unique
+  area String
+  avaliacoes Avaliacao[]
 }
 
 model Avaliacao {
-  id           Int      @id @default(autoincrement())
-  idAvaliador  Int      @map("avaliador_id")
-  estandeId    Int      @map("estande_id")
-  estande      Estande  @relation(fields: [estandeId], references: [id])
-  avaliador    Avaliador @relation(fields: [idAvaliador], references: [id])
+  id Int @id @default(autoincrement())
+  nota Float
 
-  @@index([idAvaliador], name: "avaliador_idx")
+  idAluno Int? @map("aluno_id")
+  aluno Aluno? @relation(fields: [idAluno], references: [id])
+
+  idProf Int? @map("prof_id")
+  professor Professor? @relation(fields: [idProf], references: [id])
+
+  // Os campos com id do professor e do aluno estão opcional, porque não tem como registrar de uma forma que os dois ocupem o mesmo campo.
+  // Assim como a avaliação deve ser feita ou por um, ou pelo outro, apenas um deles. Sendo isso uma regra de negócio, o Prisma não possui suporte.
+
+  estandeId Int @map("estande_id")
+  estande Estande @relation(fields: [estandeId], references: [id])
+  criterios Criterio[]
 }
 
 model Estande {
-  id     Int      @id @default(autoincrement())
-  nome   String
-  avaliacoes Avaliacao[] 
-  avaliadores Avaliador[]
+  id Int @id @default(autoincrement())
+  nomeGrupo String // No nosso sistema, o conceito de "grupo" e "estande" coincide. Isto é, um estande representa um grupo do Inovaweek, não só a posição geográfica na feira.
+  membros Aluno[]
+  avaliacoes Avaliacao[]
+}
+
+model Criterio {
+  id Int @id @default(autoincrement())
+  nome String // Ex.: Falatória, inovação, apresentação, clareza, etc.
+  descricao String
+  avaliacaoId Int
+  avaliacao Avaliacao? @relation(fields: [avaliacaoId], references: [id])
 }

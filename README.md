@@ -2,10 +2,10 @@
 
 ## Grupo
 
-[Arycia](https://github.com/Aryciacp)
-[Icaro](https://github.com/Icaro-tme)
-[João](https://github.com/joaovitor10br)
-[Vitor](https://github.com/OCVitin)
+- [Arycia](https://github.com/Aryciacp)
+- [Icaro](https://github.com/Icaro-tme)
+- [João](https://github.com/joaovitor10br)
+- [Vitor](https://github.com/OCVitin)
 
 ## Descrição
 
@@ -46,3 +46,87 @@ O projeto tem como objetivo modelar e implementar um sistema para avaliar estand
 > ```npx prisma init --datasource-provider sqlite```
 >
 > ```npx prisma migrate dev --name init```
+
+## Exemplos de body para request
+
+```
+localhost:3000/estandes
+{
+  "nomeGrupo": "Grupo 1",
+}
+```
+
+```
+localhost:3000/alunos:
+{
+  "nome": "Maria",
+  "matricula": "2019001111",
+  "curso": "Engenharia de Software",
+  "estandeId": 1
+}
+```
+
+```
+localhost:3000/professores:
+{
+  "nome": "João",
+  "matricula": "2019002222",
+  "area": "Ciência da Computação"
+}
+```
+
+```
+localhost:3000/avaliacoes:
+{
+  "idAluno": 1,
+  "estandeId": 1
+}
+```
+
+```
+localhost:3000/avaliacoes:
+{
+  "idProf": 1,
+  "estandeId": 1
+}
+```
+
+```
+localhost:3000/criterios:
+{
+  "nome": "Falatória",
+  "descricao": "Avaliação da falatória do grupo",
+  "nota": 10,
+  "avaliacaoId": 1
+}
+```
+
+```
+localhost:3000/criterios:
+{
+  "nome": "Inovação",
+  "descricao": "Avaliação da inovação do grupo",
+  "nota": 10,
+  "avaliacaoId": 1
+}
+```
+
+```
+localhost:3000/criterios:
+{
+  "nome": "Falatória",
+  "descricao": "Avaliação da falatória do grupo",
+  "nota": 10,
+  "avaliacaoId": 2
+}
+```
+
+```
+localhost:3000/criterios:
+{
+  "nome": "Inovação",
+  "descricao": "Avaliação da inovação do grupo",
+  "nota": 10,
+  "avaliacaoId": 2
+}
+```

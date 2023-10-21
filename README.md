@@ -2,10 +2,10 @@
 
 ## Grupo
 
-[Arycia](https://github.com/Aryciacp)
-[Icaro](https://github.com/Icaro-tme)
-[João](https://github.com/joaovitor10br)
-[Vitor](https://github.com/OCVitin)
+- [Arycia](https://github.com/Aryciacp)
+- [Icaro](https://github.com/Icaro-tme)
+- [João](https://github.com/joaovitor10br)
+- [Vitor](https://github.com/OCVitin)
 
 ## Descrição
 
@@ -18,7 +18,7 @@ O projeto tem como objetivo modelar e implementar um sistema para avaliar estand
 
 ## Estrutura de Modelagem (UML)
 
-<img src="/diagrama_de_classe.drawio">
+<img src="/diagrama_de_classe.png">
 
 ## Features
 
@@ -47,72 +47,86 @@ O projeto tem como objetivo modelar e implementar um sistema para avaliar estand
 >
 > ```npx prisma migrate dev --name init```
 
+## Exemplos de body para request
 
-## Comandos de teste de API:
+```
+localhost:3000/estandes
+{
+  "nomeGrupo": "Grupo 1",
+}
+```
 
-```bash
-# Post
-curl -X POST http://localhost:3000/estandes -H "Content-Type: application/json" -d '{"nomeGrupo": "Grupo 1"}'
+```
+localhost:3000/alunos:
+{
+  "nome": "Maria",
+  "matricula": "2019001111",
+  "curso": "Engenharia de Software",
+  "estandeId": 1
+}
+```
 
-curl -X POST http://localhost:3000/alunos -H "Content-Type: application/json" -d '{"nome": "Maria", "matricula": "2019001111", "curso": "Engenharia de Software", "estandeId": 1}'
+```
+localhost:3000/professores:
+{
+  "nome": "João",
+  "matricula": "2019002222",
+  "area": "Ciência da Computação"
+}
+```
 
-curl -X POST http://localhost:3000/professores -H "Content-Type: application/json" -d '{"nome": "João", "matricula": "2019002222", "area": "Ciência da Computação"}'
+```
+localhost:3000/avaliacoes:
+{
+  "idAluno": 1,
+  "estandeId": 1
+}
+```
 
-curl -X POST http://localhost:3000/avaliacoes -H "Content-Type: application/json" -d '{"idAluno": 1, "estandeId": 1}'
+```
+localhost:3000/avaliacoes:
+{
+  "idProf": 1,
+  "estandeId": 1
+}
+```
 
-curl -X POST http://localhost:3000/avaliacoes -H "Content-Type: application/json" -d '{"idProf": 1, "estandeId": 1}'
+```
+localhost:3000/criterios:
+{
+  "nome": "Falatória",
+  "descricao": "Avaliação da falatória do grupo",
+  "nota": 10,
+  "avaliacaoId": 1
+}
+```
 
-curl -X POST http://localhost:3000/criterios -H "Content-Type: application/json" -d '{"nome": "Falatória", "descricao": "Avaliação da falatória do grupo", "nota": 10, "avaliacaoId": 1}'
+```
+localhost:3000/criterios:
+{
+  "nome": "Inovação",
+  "descricao": "Avaliação da inovação do grupo",
+  "nota": 10,
+  "avaliacaoId": 1
+}
+```
 
-curl -X POST http://localhost:3000/criterios -H "Content-Type: application/json" -d '{"nome": "Inovação", "descricao": "Avaliação da inovação do grupo", "nota": 10, "avaliacaoId": 1}'
+```
+localhost:3000/criterios:
+{
+  "nome": "Falatória",
+  "descricao": "Avaliação da falatória do grupo",
+  "nota": 10,
+  "avaliacaoId": 2
+}
+```
 
-curl -X POST http://localhost:3000/criterios -H "Content-Type: application/json" -d '{"nome": "Falatória", "descricao": "Avaliação da falatória do grupo", "nota": 10, "avaliacaoId": 2}'
-
-curl -X POST http://localhost:3000/criterios -H "Content-Type: application/json" -d '{"nome": "Inovação", "descricao": "Avaliação da inovação do grupo", "nota": 10, "avaliacaoId": 2}'
-
-# Get all
-curl http://localhost:3000/estandes
-
-curl http://localhost:3000/alunos
-
-curl http://localhost:3000/professors
-
-curl http://localhost:3000/avaliacoes
-
-curl http://localhost:3000/criterios
-
-# Get por ID
-curl http://localhost:3000/estandes/1
-
-curl http://localhost:3000/alunos/1
-
-curl http://localhost:3000/professors/1
-
-curl http://localhost:3000/avaliacoes/1
-
-curl http://localhost:3000/criterios/1
-
-
-# Update por ID
-curl -X PUT http://localhost:3000/estandes/1 -H "Content-Type: application/json" -d '{"nomeGrupo": "GrupoZAO 1"}'
-
-curl -X PUT http://localhost:3000/alunos/1 -H "Content-Type: application/json" -d '{"nome": "MariaZAO", "matricula": "2019001111", "curso": "Engenharia de Software", "estandeId": 1}'
-
-curl -X PUT http://localhost:3000/professors/1 -H "Content-Type: application/json" -d '{"nome": "JoãoZAO", "matricula": "2019002222", "area": "Ciência da Computação"}'
-
-curl -X PUT http://localhost:3000/avaliacoes/1 -H "Content-Type: application/json" -d '{"idAluno": 1, "estandeId": 1}'
-
-curl -X PUT http://localhost:3000/criterios/1 -H "Content-Type: application/json" -d '{"nome": "Falatória", "descricao": "Avaliação da falatória do grupo", "nota": 1, "avaliacaoId": 1}'
-
-# Delete por ID
-curl -X DELETE http://localhost:3000/estandes/1
-
-curl -X DELETE http://localhost:3000/alunos/1
-
-curl -X DELETE http://localhost:3000/professors/1
-
-curl -X DELETE http://localhost:3000/avaliacoes/1
-
-curl -X DELETE http://localhost:3000/criterios/1
-
+```
+localhost:3000/criterios:
+{
+  "nome": "Inovação",
+  "descricao": "Avaliação da inovação do grupo",
+  "nota": 10,
+  "avaliacaoId": 2
+}
 ```

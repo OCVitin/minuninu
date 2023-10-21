@@ -18,7 +18,7 @@ O projeto tem como objetivo modelar e implementar um sistema para avaliar estand
 
 ## Estrutura de Modelagem (UML)
 
-<img src="/diagrama_de_classe.drawio">
+<img src="/diagrama_de_classe.png">
 
 ## Features
 

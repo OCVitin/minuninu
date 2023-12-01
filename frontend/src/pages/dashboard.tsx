@@ -69,13 +69,14 @@ const Dashboard: NextPage<{ userData: { nome: string } }> = (props) => {
             </Button>
           </Grid>
         </Grid>
+        <Grid container justifyContent="center" maxWidth="500px" sx={{ margin: 'auto' }}>
         {estandeData && (
           <TableContainer component={Paper} sx={{ marginTop: 4 }}>
             <Table>
               <TableHead>
                 <TableRow>
                   {Object.keys(estandeData).map((key) => (
-                    <TableCell key={key}>{key}</TableCell>
+                    <TableCell align="center" key={key}>{key}</TableCell>
                   ))}
                 </TableRow>
               </TableHead>
@@ -83,13 +84,14 @@ const Dashboard: NextPage<{ userData: { nome: string } }> = (props) => {
                 <TableRow>
                   {/* map the rows of these tables based on the values found on each key */}
                   {Object.values(estandeData).map((value, index) => (
-                    <TableCell key={index}>{value as React.ReactNode}</TableCell>
+                    <TableCell align="center" key={index}>{value as React.ReactNode}</TableCell>
                   ))}
                 </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
         )}
+        </Grid>
 
         {/* <Grid container spacing={3} justifyContent="center">
           {Array.from({ length: 6 }).map((_, index) => (

@@ -54,18 +54,20 @@ const Dashboard: NextPage<{ userData: { nome: string } }> = (props) => {
         <Divider sx={{ marginY: 4 }} />
         
         {/* Button and input for selecting an ID */}
-        <Grid container spacing={3} justifyContent="center">
+        <Grid container spacing={3} justifyContent="center" alignItems="baseline">
           <TextField
             label="Enter ID"
             type="number"
             variant="outlined"
             margin="normal"
             value={selectEstandeId || ''}
-            onChange={(e) => setSelectEstandeId( e.target.value )}
+            onChange={(e) => setSelectEstandeId(e.target.value)}
           />
-          <Button variant="contained" onClick={fetchEstande}>
-            Id do Estande
-          </Button>
+          <Grid item>
+            <Button variant="contained" size="medium" onClick={fetchEstande}>
+              Id do Estande
+            </Button>
+          </Grid>
         </Grid>
         {estandeData && (
           <TableContainer component={Paper} sx={{ marginTop: 4 }}>

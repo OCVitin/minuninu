@@ -7,16 +7,20 @@ import { fetchData } from '../services/api';
 
 const defaultTheme = createTheme();
 
-interface DashboardProps {
-  email?: string;
+export async function getServerSideProps(context: { query: { userData: string; }; }) {
+  const userData: { nome: string } = JSON.parse(context.query.userData);
+
+  return {
+    props: {
+      userData,
+    },
+  };
 }
 
-const Dashboard: NextPage<DashboardProps> = ({ email = '' }) => {
-  const formattedEmail = email
-    ? email.split('@')[0].charAt(0).toUpperCase() + email.split('@')[0].slice(1)
-    : 'Usuário';
+const Dashboard: NextPage<{ userData: { nome: string } }> = (props) => {
+  const { userData } = props;
 
-    // this is a string
+
   const [selectEstandeId, setSelectEstandeId] = React.useState('');
   const [estandeData, setEstandeData] = React.useState<any | null>(null);
 
@@ -45,7 +49,7 @@ const Dashboard: NextPage<DashboardProps> = ({ email = '' }) => {
       </AppBar>
       <Box sx={{ flexGrow: 1, p: 3, textAlign: 'center' }}>
         <Typography variant="h5" gutterBottom sx={{ marginBottom: 2 }}>
-          Seja bem-vindo, @{formattedEmail}!
+          Seja bem-vindo, @{userData.nome}
         </Typography>
         <Divider sx={{ marginY: 4 }} />
         
@@ -85,9 +89,7 @@ const Dashboard: NextPage<DashboardProps> = ({ email = '' }) => {
           </TableContainer>
         )}
 
-        <Grid container spacing={3} justifyContent="center">
-
-
+        {/* <Grid container spacing={3} justifyContent="center">
           {Array.from({ length: 6 }).map((_, index) => (
             <Grid item xs={12} md={6} key={index}>
               <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', transition: 'transform 0.3s', '&:hover': { transform: 'scale(1.05)' } }}>
@@ -98,7 +100,8 @@ const Dashboard: NextPage<DashboardProps> = ({ email = '' }) => {
               </Paper>
             </Grid>
           ))}
-        </Grid>
+        </Grid> */}
+        
         <Box component="footer" sx={{ marginTop: 4, textAlign: 'center' }}>
           <Typography variant="body2" color="text.secondary">
             {'Direitos Autorais © '}
@@ -115,10 +118,6 @@ const Dashboard: NextPage<DashboardProps> = ({ email = '' }) => {
   );
 };
 
-Dashboard.getInitialProps = async (context) => {
-  const { query } = context;
-  const email = typeof query.email === 'string' ? query.email : '';
-  return { email };
-};
+
 
 export default Dashboard;

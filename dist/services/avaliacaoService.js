@@ -25,6 +25,20 @@ class AvaliacaoService {
             });
         });
     }
+    getAvaliacaoByAlunoId(idAluno) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return prisma.avaliacao.findFirst({
+                where: { idAluno },
+            });
+        });
+    }
+    getAvaliacaoByProfId(idProf) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return prisma.avaliacao.findFirst({
+                where: { idProf },
+            });
+        });
+    }
     createAvaliacao(data) {
         return __awaiter(this, void 0, void 0, function* () {
             const avaliacao = yield prisma.avaliacao.findFirst({

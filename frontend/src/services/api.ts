@@ -9,8 +9,8 @@ export const fetchData = async (endpoint: string, id?: string) => {
     const response = await axios.get(url);
     return response.data;
   } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error; // You might want to handle this error more gracefully
+    console.error('Error', error);
+    throw error; 
   }
 };
 

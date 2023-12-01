@@ -83,5 +83,22 @@ class ProfessorController {
             }
         });
     }
+    getProfessorByMatricula(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { matricula } = req.params;
+            try {
+                const professor = yield professorService.getProfessorByMatricula(matricula);
+                if (professor) {
+                    return res.json(professor);
+                }
+                else {
+                    return res.status(404).json({ error: 'Professor não encontrado' });
+                }
+            }
+            catch (error) {
+                return res.status(500).json({ error: 'Erro ao buscar professor' });
+            }
+        });
+    }
 }
 exports.ProfessorController = ProfessorController;

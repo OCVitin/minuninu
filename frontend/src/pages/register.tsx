@@ -150,6 +150,8 @@ const Register: React.FC = () => {
                 </Grid>
                 <Grid item>
                   <Select
+                    defaultValue='0'
+                    
                     labelId="funcao"
                     id="funcao"
                     value={funcao}

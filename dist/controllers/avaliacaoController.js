@@ -83,5 +83,39 @@ class AvaliacaoController {
             }
         });
     }
+    getAvaliacaoByAlunoId(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idAluno } = req.params;
+            try {
+                const avaliacao = yield avaliacaoService.getAvaliacaoByAlunoId(parseInt(idAluno, 10));
+                if (avaliacao) {
+                    return res.json(avaliacao);
+                }
+                else {
+                    return res.status(404).json({ error: 'Avaliação não encontrada' });
+                }
+            }
+            catch (error) {
+                return res.status(500).json({ error: 'Erro ao buscar avaliação' });
+            }
+        });
+    }
+    getAvaliacaoByProfId(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idProf } = req.params;
+            try {
+                const avaliacao = yield avaliacaoService.getAvaliacaoByProfId(parseInt(idProf, 10));
+                if (avaliacao) {
+                    return res.json(avaliacao);
+                }
+                else {
+                    return res.status(404).json({ error: 'Avaliação não encontrada' });
+                }
+            }
+            catch (error) {
+                return res.status(500).json({ error: 'Erro ao buscar avaliação' });
+            }
+        });
+    }
 }
 exports.AvaliacaoController = AvaliacaoController;

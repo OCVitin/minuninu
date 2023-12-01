@@ -83,5 +83,22 @@ class CriterioController {
             }
         });
     }
+    getCriterioByAvaliacaoId(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idAvaliacao } = req.params;
+            try {
+                const criterios = yield criterioService.getCriterioByAvaliacaoId(parseInt(idAvaliacao, 10));
+                if (criterios) {
+                    return res.json(criterios);
+                }
+                else {
+                    return res.status(404).json({ error: 'Critérios não encontrados' });
+                }
+            }
+            catch (error) {
+                return res.status(500).json({ error: 'Erro ao buscar critérios' });
+            }
+        });
+    }
 }
 exports.CriterioController = CriterioController;

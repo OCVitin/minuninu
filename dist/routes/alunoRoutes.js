@@ -17,4 +17,6 @@ router.post('/alunos', alunoController.createAluno);
 router.delete('/alunos/:id', alunoController.deleteAluno);
 // Rota para atualizar um aluno por ID
 router.put('/alunos/:id', alunoController.updateAluno);
+// Rota para buscar um aluno por matricula
+router.get('/alunos/matricula/:matricula', alunoController.getAlunoByMatricula);
 exports.default = router;

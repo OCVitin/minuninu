@@ -17,4 +17,8 @@ router.post('/avaliacoes', avaliacaoController.createAvaliacao);
 router.delete('/avaliacoes/:id', avaliacaoController.deleteAvaliacao);
 // Rota para atualizar uma avaliação por ID
 router.put('/avaliacoes/:id', avaliacaoController.updateAvaliacao);
+// Rota para buscar uma avaliação por idAluno
+router.get('/avaliacoes/aluno/:idAluno', avaliacaoController.getAvaliacaoByAlunoId);
+// Rota para buscar uma avaliação por idProf
+router.get('/avaliacoes/prof/:idProf', avaliacaoController.getAvaliacaoByProfId);
 exports.default = router;

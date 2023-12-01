@@ -25,6 +25,13 @@ class ProfessorService {
             });
         });
     }
+    getProfessorByMatricula(matricula) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return prisma.professor.findFirst({
+                where: { matricula },
+            });
+        });
+    }
     createProfessor(data) {
         return __awaiter(this, void 0, void 0, function* () {
             return prisma.professor.create({

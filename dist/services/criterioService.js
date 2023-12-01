@@ -25,6 +25,13 @@ class CriterioService {
             });
         });
     }
+    getCriterioByAvaliacaoId(idAvaliacao) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return prisma.criterio.findMany({
+                where: { avaliacaoId: idAvaliacao },
+            });
+        });
+    }
     createCriterio(data) {
         return __awaiter(this, void 0, void 0, function* () {
             return prisma.criterio.create({

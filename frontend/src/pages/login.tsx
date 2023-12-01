@@ -1,7 +1,9 @@
 import * as React from 'react';
 
 import { useState } from 'react';
+import { fetchData } from '../services/api';
 import { useRouter } from 'next/router';
+
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -15,9 +17,13 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Link from 'next/link'; // Importando o Link do Next.js
+
 
 
 const Copyright: React.FC = (props) => {
@@ -43,17 +49,47 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [matricula, setMatricula] = useState('');
     const [password, setPassword] = useState('');
+    const [userData, setUserData] = useState<any | null>(null);
+    const [funcao, setFuncao] = useState('');
     const [error, setError] = useState(false);
     const router = useRouter();
+    
   
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      if (email && password) {
-        router.push({ pathname: '/dashboard', query: { email: email.split('@')[0] } });
-      } else {
-        setError(true);
+    const searchUser = async () => {
+      try {
+        if (matricula) {
+          
+          const endpoint = funcao === '0' ? 'alunos/matricula' : 'professores/matricula';
+          const data = await fetchData(endpoint, matricula);
+          setUserData(data);
+          return data; 
+        } else {
+          console.log('Sem matricula selecionada');
+        }
+      } catch (error) {
+        console.error(error);
+        throw error; 
       }
     };
+    
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+    
+      try {
+        const searchData = await searchUser();
+    
+        if (searchData) {
+          
+          router.push({ pathname: '/dashboard', query: { userData: JSON.stringify(searchData) } });
+        } else {
+          setError(true);
+        }
+      } catch (error) {
+        console.error(error);
+        
+      }
+    };
+    
 
 
 
@@ -93,18 +129,20 @@ const Login: React.FC = () => {
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 , justifyItems: 'space-between'}}>
                 <Grid container>
+                    
                     <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="matricula"
-                        label="Numero de matricula"
-                        name="matricula"
-                        autoComplete="matricula"
-                        autoFocus
-                        value={matricula}
-                        onChange={(e) => setMatricula(e.target.value)}
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="matricula"
+                      label="Numero de matricula"
+                      name="matricula"
+                      autoComplete="matricula"
+                      autoFocus
+                      value={matricula}
+                      onChange={(e) => setMatricula(e.target.value)}
                     />
+
                     <TextField
                         margin="normal"
                         required
@@ -119,13 +157,22 @@ const Login: React.FC = () => {
                     />
                     {error && (
                     <Typography color="red">
-                        Escreva qualquer coisa no login, só pra simular uma conta.
+                        Login falhou, tente novamente.
                     </Typography>
                     )}
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Lembre de mim"
-                    />
+                    
+                    <Select
+                      defaultValue='0'
+                      labelId="funcao"
+                      id="funcao"
+                      value={funcao}
+                      label="Funcao"
+                      onChange={(e) => setFuncao(e.target.value)}
+                    >
+                      <MenuItem value={"0"}>Aluno</MenuItem>
+                      <MenuItem value={"1"}>Professor</MenuItem>
+                    </Select>
+                      
                     <Button
                         type="submit"
                         fullWidth

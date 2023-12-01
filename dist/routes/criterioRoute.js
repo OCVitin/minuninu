@@ -17,4 +17,6 @@ router.post('/criterios', criterioController.createCriterio);
 router.delete('/criterios/:id', criterioController.deleteCriterio);
 // Rota para atualizar um critério por ID
 router.put('/criterios/:id', criterioController.updateCriterio);
+// Rota para buscar um critério por idAvaliacao
+router.get('/criterios/avaliacao/:idAvaliacao', criterioController.getCriterioByAvaliacaoId);
 exports.default = router;

@@ -83,5 +83,22 @@ class AlunoController {
             }
         });
     }
+    getAlunoByMatricula(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { matricula } = req.params;
+            try {
+                const aluno = yield alunoService.getAlunoByMatricula(matricula);
+                if (aluno) {
+                    return res.json(aluno);
+                }
+                else {
+                    return res.status(404).json({ error: 'Aluno não encontrado' });
+                }
+            }
+            catch (error) {
+                return res.status(500).json({ error: 'Erro ao buscar aluno' });
+            }
+        });
+    }
 }
 exports.AlunoController = AlunoController;

@@ -57,5 +57,12 @@ class AlunoService {
             });
         });
     }
+    getAlunoByMatricula(matricula) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return prisma.aluno.findUnique({
+                where: { matricula },
+            });
+        });
+    }
 }
 exports.AlunoService = AlunoService;

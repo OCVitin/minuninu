@@ -4,8 +4,12 @@ import professorRoutes from './routes/professorRoute';
 import estandeRoutes from './routes/estandeRoute';
 import avaliacaoRoutes from './routes/avaliacaoRoute';
 import criterioRoutes from './routes/criterioRoute';
+import cors from 'cors';
 
 const app = express();
+
+// app.use(cors());
+
 const port = 3000;
 
 app.use(express.json());

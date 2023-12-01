@@ -31,6 +31,7 @@ class AvaliacaoService {
                 where: {
                     idAluno: data.idAluno,
                     idProf: data.idProf,
+                    estandeId: data.estandeId,
                 },
             });
             if (avaliacao) {

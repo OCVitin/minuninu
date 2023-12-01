@@ -10,6 +10,7 @@ const estandeRoute_1 = __importDefault(require("./routes/estandeRoute"));
 const avaliacaoRoute_1 = __importDefault(require("./routes/avaliacaoRoute"));
 const criterioRoute_1 = __importDefault(require("./routes/criterioRoute"));
 const app = (0, express_1.default)();
+// app.use(cors());
 const port = 3000;
 app.use(express_1.default.json());
 app.use('/', alunoRoutes_1.default);

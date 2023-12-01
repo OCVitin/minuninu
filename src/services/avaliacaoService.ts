@@ -13,19 +13,19 @@ export class AvaliacaoService {
     });
   }
 
-  public async createAvaliacao(
-    data: { 
-      idAluno?:   number; 
-      idProf?:    number; 
-      estandeId:  number 
-    }) {
+  public async createAvaliacao(data: { 
+    idAluno?: number; 
+    idProf?: number; 
+    estandeId: number;
+  }) {
     const avaliacao = await prisma.avaliacao.findFirst({
       where: {
         idAluno: data.idAluno,
         idProf: data.idProf,
+        estandeId: data.estandeId,
       },
     });
-
+  
     if (avaliacao) {
       return prisma.avaliacao.update({
         where: {
@@ -39,6 +39,7 @@ export class AvaliacaoService {
       });
     }
   }
+  
 
   public async deleteAvaliacao(id: number) {
     const avaliacao = await prisma.avaliacao.delete({

@@ -61,4 +61,32 @@ export class AvaliacaoController {
       return res.status(500).json({ error: 'Erro ao atualizar avaliação' });
     }
   }
+
+  public async getAvaliacaoByAlunoId(req: Request, res: Response) {
+    const { idAluno } = req.params;
+    try {
+      const avaliacao = await avaliacaoService.getAvaliacaoByAlunoId(parseInt(idAluno, 10));
+      if (avaliacao) {
+        return res.json(avaliacao);
+      } else {
+        return res.status(404).json({ error: 'Avaliação não encontrada' });
+      }
+    } catch (error) {
+      return res.status(500).json({ error: 'Erro ao buscar avaliação' });
+    }
+  }
+
+  public async getAvaliacaoByProfId(req: Request, res: Response) {
+    const { idProf } = req.params;
+    try {
+      const avaliacao = await avaliacaoService.getAvaliacaoByProfId(parseInt(idProf, 10));
+      if (avaliacao) {
+        return res.json(avaliacao);
+      } else {
+        return res.status(404).json({ error: 'Avaliação não encontrada' });
+      }
+    } catch (error) {
+      return res.status(500).json({ error: 'Erro ao buscar avaliação' });
+    }
+  }
 }

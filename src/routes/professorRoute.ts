@@ -19,4 +19,8 @@ router.delete('/professores/:id', professorController.deleteProfessor);
 // Rota para atualizar um professor por ID
 router.put('/professores/:id', professorController.updateProfessor);
 
+// Rota para buscar um professor por matricula
+router.get('/professores/matricula/:matricula', professorController.getProfessorByMatricula);
+
+
 export default router;

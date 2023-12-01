@@ -13,6 +13,18 @@ export class AvaliacaoService {
     });
   }
 
+  public async getAvaliacaoByAlunoId(idAluno: number) {
+    return prisma.avaliacao.findFirst({
+      where: { idAluno },
+    });
+  }
+
+  public async getAvaliacaoByProfId(idProf: number) {
+    return prisma.avaliacao.findFirst({
+      where: { idProf },
+    });
+  }
+
   public async createAvaliacao(data: { 
     idAluno?: number; 
     idProf?: number; 

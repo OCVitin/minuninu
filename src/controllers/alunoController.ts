@@ -61,4 +61,19 @@ export class AlunoController {
       return res.status(500).json({ error: 'Erro ao atualizar aluno' });
     }
   }
+
+  public async getAlunoByMatricula(req: Request, res: Response) {
+    const { matricula } = req.params;
+    try {
+      const aluno = await alunoService.getAlunoByMatricula(matricula);
+      if (aluno) {
+        return res.json(aluno);
+      } else {
+        return res.status(404).json({ error: 'Aluno não encontrado' });
+      }
+    } catch (error) {
+      return res.status(500).json({ error: 'Erro ao buscar aluno' });
+    }
+  }
+  
 }

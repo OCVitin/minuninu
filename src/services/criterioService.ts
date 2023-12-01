@@ -13,6 +13,12 @@ export class CriterioService {
     });
   }
 
+  public async getCriterioByAvaliacaoId(idAvaliacao: number) {
+    return prisma.criterio.findMany({
+      where: { avaliacaoId: idAvaliacao },
+    });
+  }
+
   public async createCriterio(
     data: { 
       nome:         string; 

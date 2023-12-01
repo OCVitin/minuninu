@@ -13,6 +13,12 @@ export class ProfessorService {
     });
   }
 
+  public async getProfessorByMatricula(matricula: string) {
+    return prisma.professor.findFirst({
+      where: { matricula },
+    });
+  }
+
   public async createProfessor(
     data: { 
       nome:       string; 

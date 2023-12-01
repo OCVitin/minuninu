@@ -61,4 +61,18 @@ export class ProfessorController {
       return res.status(500).json({ error: 'Erro ao atualizar professor' });
     }
   }
+
+  public async getProfessorByMatricula(req: Request, res: Response) {
+    const { matricula } = req.params;
+    try {
+      const professor = await professorService.getProfessorByMatricula(matricula);
+      if (professor) {
+        return res.json(professor);
+      } else {
+        return res.status(404).json({ error: 'Professor não encontrado' });
+      }
+    } catch (error) {
+      return res.status(500).json({ error: 'Erro ao buscar professor' });
+    }
+  }
 }

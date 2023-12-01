@@ -61,4 +61,18 @@ export class CriterioController {
       return res.status(500).json({ error: 'Erro ao atualizar critério' });
     }
   }
+
+  public async getCriterioByAvaliacaoId(req: Request, res: Response) {
+    const { idAvaliacao } = req.params;
+    try {
+      const criterios = await criterioService.getCriterioByAvaliacaoId(parseInt(idAvaliacao, 10));
+      if (criterios) {
+        return res.json(criterios);
+      } else {
+        return res.status(404).json({ error: 'Critérios não encontrados' });
+      }
+    } catch (error) {
+      return res.status(500).json({ error: 'Erro ao buscar critérios' });
+    }
+  }
 }

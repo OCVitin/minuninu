@@ -55,4 +55,12 @@ export class AlunoService {
       data,
     });
   }
+
+  public async getAlunoByMatricula(matricula: string) {
+    return prisma.aluno.findUnique({
+      where: { matricula },
+    });
+  }
+
+
 }
